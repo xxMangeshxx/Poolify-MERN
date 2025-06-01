@@ -1,0 +1,32 @@
+version: '3'
+services:
+  mongo:
+    image: mongo
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  backend:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongo
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/poolify
+    volumes:
+      - ./backend:/app
+
+  client:                         # ⬅️ updated from 'frontend' to 'client'
+    build: ./client               # ⬅️ path updated
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    volumes:
+      - ./client:/app             # ⬅️ path updated
+
+volumes:
+  mongo-data:
