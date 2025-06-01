@@ -117,3 +117,29 @@ Pull requests are welcome! For major changes, please open an issue first to disc
 ## 📄 License
 
 This project is open-source and available under the [MIT License](LICENSE).
+
+![image](https://github.com/user-attachments/assets/a5ce0228-7c93-48f9-acef-62f56b88dccc)
+
+![image](https://github.com/user-attachments/assets/610f2c20-2d4b-4519-87e9-54bfdb9cafb9)
+
+![image](https://github.com/user-attachments/assets/c9565b2b-3cb2-4200-806f-a54c8642b8b4)
+
+![image](https://github.com/user-attachments/assets/5436aa7d-2237-453b-b72e-2ddce9936b41)
+
+![image](https://github.com/user-attachments/assets/a70d30b2-4478-4e03-8bdc-89fbc38a4240)
+
+![image](https://github.com/user-attachments/assets/e464ee8f-c1eb-4587-9751-dbf2f235a70b)
+
+![image](https://github.com/user-attachments/assets/774fb329-3bf3-415f-95e3-48641dbb0833)
+
+![image](https://github.com/user-attachments/assets/0431f03b-0465-4e0a-ad40-008c4b905a94)
+
+![image](https://github.com/user-attachments/assets/05d16117-2866-4adc-8230-38e762df611f)
+
+
+
+
+
+
+
+
