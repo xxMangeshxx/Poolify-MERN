@@ -40,11 +40,8 @@ jobs:
         docker push ${{ secrets.DOCKER_USERNAME }}/poolify-backend:latest
 
     - name: Deploy Backend to Render
-      env:
-        RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
       run: |
-        curl -X POST https://api.render.com/v1/services/${{ secrets.RENDER_BACKEND_SERVICE_ID }}/deploys \
-          -H "Authorization: Bearer $RENDER_API_KEY"
+        curl -X POST "https://api.render.com/deploy/srv-d0v19ii4d50c73e2io40?key=Xde4fs1rV6s"
 
     # Frontend Tests and Deploy
     - name: Install Frontend Dependencies
@@ -66,8 +63,5 @@ jobs:
         docker push ${{ secrets.DOCKER_USERNAME }}/poolify-frontend:latest
 
     - name: Deploy Frontend to Render
-      env:
-        RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
       run: |
-        curl -X POST https://api.render.com/v1/services/${{ secrets.RENDER_FRONTEND_SERVICE_ID }}/deploys \
-          -H "Authorization: Bearer $RENDER_API_KEY" 
+        curl -X POST "https://api.render.com/deploy/srv-d0v2mcvfte5s73972qog?key=VcexKD3IdGU" 
