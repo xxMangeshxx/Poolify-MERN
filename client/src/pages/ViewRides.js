@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { FaHome } from 'react-icons/fa';
 import { buttonStyle, emptyStyle, inputStyle, pageheadingStyle, popupStyles} from '../Styles';
+import { API_URL } from '../config';
 
 function ViewRides() {
   const [rides, setRides] = useState([]);
@@ -26,7 +27,7 @@ function ViewRides() {
     const fetchRides = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:5000/api/rides', {
+        const response = await axios.get(`${API_URL}/api/rides`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setRides(response.data);
@@ -50,7 +51,7 @@ function ViewRides() {
       const seats = parseInt(seatRequests[rideId]) || 1;
 
       await axios.post(
-        `http://localhost:5000/api/rides/join/${rideId}`,
+        `${API_URL}/api/rides/join/${rideId}`,
         { seats },
         {
           headers: { Authorization: `Bearer ${token}` },

@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { FaHome } from 'react-icons/fa';
 import { containerStyle,cardStyle,headingStyle,inputStyle, popupStyles, buttonStyle} from '../Styles';
+import { API_URL } from '../config';
 
 function MyRides() {
   const [postedRides, setPostedRides] = useState([]);
@@ -28,7 +29,7 @@ function MyRides() {
 
   const fetchMyRides = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/rides/my-rides', {
+      const response = await axios.get(`${API_URL}/api/rides/my-rides`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setPostedRides(response.data.posted || []);
@@ -50,7 +51,7 @@ function MyRides() {
 
   const handleSave = async () => {
     try {
-      await axios.put(`http://localhost:5000/api/rides/${editingRideId}`, editedRide, {
+      await axios.put(`${API_URL}/api/rides/${editingRideId}`, editedRide, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setPopupMessage('✅ All riders have been notified about the changes.');
@@ -65,7 +66,7 @@ function MyRides() {
   const handleDelete = async (rideId) => {
     if (!window.confirm('Are you sure you want to delete this ride?')) return;
     try {
-      await axios.delete(`http://localhost:5000/api/rides/${rideId}`, {
+      await axios.delete(`${API_URL}/api/rides/${rideId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setPopupMessage('🗑 Ride deleted. All riders notified.');
@@ -77,18 +78,18 @@ function MyRides() {
   };
 
   const handleLeaveRide = async (rideId) => {
-  try {
-    const token = localStorage.getItem('token');
-    await axios.post(`http://localhost:5000/api/rides/leave/${rideId}`, {}, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    setPopupMessage('🚫 You have left the ride.');
-    setShowPopup(true);
-    fetchMyRides(); // Refresh the list
-  } catch (err) {
-    console.error('❌ Leave Ride Failed:', err);
-  }
-};
+    try {
+      const token = localStorage.getItem('token');
+      await axios.post(`${API_URL}/api/rides/leave/${rideId}`, {}, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setPopupMessage('🚫 You have left the ride.');
+      setShowPopup(true);
+      fetchMyRides();
+    } catch (err) {
+      console.error('❌ Leave Ride Failed:', err);
+    }
+  };
 
   return (
     <>

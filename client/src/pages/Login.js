@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { containerStyle,cardStyle,headingStyle,inputStyle, buttonStyle} from '../Styles';
+import { API_URL } from '../config';
 
 function Login({ onLoginSuccess }) {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ function Login({ onLoginSuccess }) {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/login', {
+      const res = await axios.post(`${API_URL}/api/auth/login`, {
         email,
         password,
       });
@@ -49,7 +50,7 @@ function Login({ onLoginSuccess }) {
           {error && <p style={styles.error}>{error}</p>}
         </form>
         <p style={styles.footer}>
-          Don’t have an account?{' '}
+          Don't have an account?{' '}
           <span style={styles.link} onClick={() => navigate('/signup')}>Sign up</span>
         </p>
       </div>

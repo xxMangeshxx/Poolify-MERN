@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { FaHome } from 'react-icons/fa';
 import { cardStyle, headingStyle } from '../Styles';
+import { API_URL } from '../config';
 
 function PastRides() {
   const [postedRides, setPostedRides] = useState([]);
@@ -21,7 +22,7 @@ function PastRides() {
   useEffect(() => {
     const fetchPastRides = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/auth/past-rides', {
+        const res = await axios.get(`${API_URL}/api/auth/past-rides`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -51,7 +52,7 @@ function PastRides() {
         <div style={styles.column}>
           <h3>📤 Rides Posted by Me</h3>
           {postedRides.length === 0 ? (
-            <p style={styles.empty}>You haven’t posted any rides until now.</p>
+            <p style={styles.empty}>You haven't posted any rides until now.</p>
           ) : (
             postedRides.map((ride) => (
               <div key={ride._id} style={styles.card}>
@@ -70,7 +71,7 @@ function PastRides() {
         <div style={styles.column}>
           <h3>📥 Rides Joined by Me</h3>
           {joinedRides.length === 0 ? (
-            <p style={styles.empty}>You haven’t joined any rides until now.</p>
+            <p style={styles.empty}>You haven't joined any rides until now.</p>
           ) : (
             joinedRides.map((ride) => (
               <div key={ride._id} style={styles.card}>

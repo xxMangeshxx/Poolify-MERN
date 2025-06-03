@@ -9,6 +9,7 @@ import {
   inputStyle,
   buttonStyle
 } from '../Styles';
+import { API_URL } from '../config';
 
 function PostRide() {
   const [formData, setFormData] = useState({
@@ -53,7 +54,7 @@ function PostRide() {
     }
 
     try {
-      await axios.post('http://localhost:5000/api/rides', formData, {
+      await axios.post(`${API_URL}/api/rides`, formData, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
       setSuccess('✅ Ride posted successfully!');

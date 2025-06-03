@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { FaHome } from 'react-icons/fa';
 import { containerStyle,cardStyle,headingStyle,inputStyle, buttonStyle} from '../Styles';
+import { API_URL } from '../config';
 
 function MyProfile() {
   const [profile, setProfile] = useState({
@@ -20,7 +21,7 @@ function MyProfile() {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/auth/me', {
+        const res = await axios.get(`${API_URL}/api/auth/me`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
           }
@@ -44,15 +45,15 @@ function MyProfile() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put('http://localhost:5000/api/auth/me', profile, {
+      await axios.put(`${API_URL}/api/auth/me`, profile, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         }
       });
       setMessage('✅ Profile updated successfully!');
-        setTimeout(() => {
+      setTimeout(() => {
         navigate('/dashboard');
-        }, 2000);
+      }, 2000);
     } catch (err) {
       setMessage('❌ Failed to update profile');
     }

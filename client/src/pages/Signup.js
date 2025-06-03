@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { containerStyle,cardStyle,headingStyle,inputStyle, buttonStyle} from '../Styles';
+import { API_URL } from '../config';
 
 function Signup({ onSignupSuccess }) {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ function Signup({ onSignupSuccess }) {
   }
 
   try {
-    const res = await axios.post('http://localhost:5000/api/auth/signup', {
+    const res = await axios.post(`${API_URL}/api/auth/signup`, {
       username,
       email,
       password

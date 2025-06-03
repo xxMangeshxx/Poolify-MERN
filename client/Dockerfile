@@ -1,24 +1,18 @@
-# frontend/Dockerfile
-FROM node:18
+# Build stage
+from node:16-alpine as build
 
-# Set working directory
 WORKDIR /app
 
-# Install dependencies
 COPY package*.json ./
 RUN npm install
 
-# Copy the rest of the code
 COPY . .
-
-# Build React app
 RUN npm run build
 
-# Install serve to serve the static files
-RUN npm install -g serve
+# Production stage
+FROM nginx:alpine
+COPY --from=build /app/build /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Expose frontend port
-EXPOSE 3000
-
-# Serve the build
-CMD ["serve", "-s", "build"]
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
